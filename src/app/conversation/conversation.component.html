@@ -1,0 +1,25 @@
+<div class="container" *ngIf="messages" [ngClass]="{'shaker': shake}">
+  <div class="row" *ngFor="let m of messages">
+    <div class="col-md-auto">
+      <img class="conversationAvatarPicture avatarConversation" src="assets/img/generic_avatar.png">
+    </div>
+    <div class="col">
+      <b>{{getNickById(m.sender)}}</b> Dice
+      <br>
+      <span>{{m.text}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-auto">
+      <img class="conversationAvatarPicture avatarConversation" src="assets/img/generic_avatar.png">
+    </div>
+    <div class="col">
+      <textarea class="form-control" name="" id="" cols="30" rows="5" [(ngModel)]="textMessage" (keyup.enter)="sendMessage()"></textarea>
+      <div class="row">
+        <div class="input-group">
+          <button (click)="sendZumbido()">Zumbido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

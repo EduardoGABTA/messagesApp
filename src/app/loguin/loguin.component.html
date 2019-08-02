@@ -1,0 +1,38 @@
+<div class="loginContainer">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-3">
+        <div class="avatarFramedOffline marginTop15 marginBot15">
+          <img src="assets/img/generic_avatar.png" class="avatarIMG img-fluid">
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-6">
+        <div class="center">
+          <h3>Iniciar sesión</h3>
+        </div>
+        <p class="center" *ngIf="operation === 'register'">¿Ya esta registrado? <a (click)="operation='login'">!Logeate¡</a></p>
+        <p class="center" *ngIf="operation === 'login'">¿Aun no está registrado? <a (click)="operation='register'">!Registrate¡</a></p>
+        <div class="borderedContainer">
+          <input type="email" class="form-control marginBot15" placeholder="Ingresa tú email" [(ngModel)]="email">
+          <input type="password" class="form-control marginBot15" placeholder="Ingresa tú contraseña" [(ngModel)]="password">
+          <input *ngIf="operation === 'register'" [(ngModel)]="nick" type="text" class="form-control marginBot15" placeholder="Ingresa tú nick">
+        </div>
+        <div class="center marginTop15">
+          <button *ngIf="operation === 'login'" class="btn btn-primary" type="button" (click)="login()">
+            <span *ngIf="showSpinner" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            Iniciar Sesión
+          </button>
+          <a *ngIf="operation === 'register'" class="btn btn-primary" (click)="registerWithEmail()">Registrarse</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h1>
+  Sign in
+</h1>
+
+<button (click)="socialSignIn('facebook')">Sign in with Facebook</button>
+<button (click)="socialSignIn('google')">Sign in with Google</button>

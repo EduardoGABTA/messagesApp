@@ -1,0 +1,93 @@
+<!--<div id="profileContainer">
+
+</div>-->
+<div class="container">
+  <div class="card border-info mb-3">
+    <div class="card-header text-center">Perfil</div>
+    <div class="card-body text-info">
+      <section>
+        <div class="container mt-4">
+          <div class="row justify-content-center">
+            <!--Profile Card 3-->
+            <div class="col-md-10" *ngIf="user">
+              <div class="card profile-card-3">
+                <div class="background-block">
+                  <img
+                    src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt="profile-sample1" class="background"/>
+                </div>
+                <div class="profile-thumb-block">
+                  <img *ngIf="!editandoFotoPerfil" [src]="croppedImage || user.avatar || 'assets/img/generic_avatar.png'" alt="profile-image"
+                       class="profile"/>
+                  <image-cropper *ngIf="editandoFotoPerfil" class="upload"
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]="1 / 1"
+                    [resizeToWidth]="128"
+                    format="png"
+                    (imageCropped)="imageCropped($event)"
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                  ></image-cropper>
+                </div>
+                <div class="card-content">
+                  <hr>
+                  <h2 style="margin-top: 50px;"> {{user.nick}}<small>{{user.subNick}}</small></h2>
+                  <div class="row justify-content-between">
+                    <a class="hand">
+                      <i class="fa fa-photo-video"></i>
+                      Agregar una foto
+                    </a>
+                    <label class="hand" *ngIf="!editandoFotoPerfil">
+                      <input type="file" (click)="editandoFotoPerfil = !editandoFotoPerfil" (change)="fileChangeEvent($event)"><i class="fa fa-upload"></i>Cambiar foto de perfil
+                    </label>
+                    <a *ngIf="editandoFotoPerfil" class="hand" (click)="editandoFotoPerfil = !editandoFotoPerfil">
+                      <i class="fa fa-ban"></i>
+                      Cancelar
+                    </a>
+                    <a class="hand">
+                      <i class="fa fa-google-plus"></i>Accion requerida
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="card-footer">
+      <div >
+        <div class="row">
+          <div class="col-md-12" *ngIf="user">
+            <div class="col-md-6">
+              <label fixed>Nick</label>
+              <input type="text" class="form-control" [(ngModel)]="user.nick">
+            </div>
+            <div class="col-md-6">
+              <label fixed>Sub-Nick</label>
+              <input type="text" class="form-control" [(ngModel)]="user.subNick">
+            </div>
+            <div class="col-md-6">
+              <label fixed>Email</label>
+              <input type="email" disabled class="form-control" [(ngModel)]="user.email">
+            </div>
+            <div class="col-md-6">
+              <label fixed>Status</label>
+              <select class="form-control" [(ngModel)]="user.status">
+                <option value="Conectado">Conectado</option>
+                <option value="Ausente">Ausente</option>
+                <option value="Ocupado">Ocupado</option>
+                <option value="Desconectado">Desconectado</option>
+              </select>
+            </div>
+            <hr>
+            <a class="btn btn-primary btn-block" (click)="saveSettings()">Guardar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
