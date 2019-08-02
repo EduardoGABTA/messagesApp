@@ -2,7 +2,7 @@
 
 </div>-->
 <div class="container">
-  <div class="card border-info mb-3">
+  <div class="card border-info mb-3 back">
     <div class="card-header text-center">Perfil</div>
     <div class="card-body text-info">
       <section>
@@ -39,15 +39,16 @@
                       <i class="fa fa-photo-video"></i>
                       Agregar una foto
                     </a>
-                    <label class="hand" *ngIf="!editandoFotoPerfil">
-                      <input type="file" (click)="editandoFotoPerfil = !editandoFotoPerfil" (change)="fileChangeEvent($event)"><i class="fa fa-upload"></i>Cambiar foto de perfil
+
+                    <label class="hand" *ngIf="!editandoFotoPerfil" style="color: black !important;">
+                      <input type="file"  (change)="fileChangeEvent($event)"><i class="fa fa-upload"></i>Cambiar foto de perfil
                     </label>
                     <a *ngIf="editandoFotoPerfil" class="hand" (click)="editandoFotoPerfil = !editandoFotoPerfil">
                       <i class="fa fa-ban"></i>
                       Cancelar
                     </a>
-                    <a class="hand">
-                      <i class="fa fa-google-plus"></i>Accion requerida
+                    <a class="hand" (click)="saveSettings()">
+                      <i class="fa fa-save"></i>Guardar Cambios
                     </a>
                   </div>
                 </div>
@@ -60,7 +61,7 @@
     <div class="card-footer">
       <div >
         <div class="row">
-          <div class="col-md-12" *ngIf="user">
+          <div class="col-md-12 input-group" *ngIf="user">
             <div class="col-md-6">
               <label fixed>Nick</label>
               <input type="text" class="form-control" [(ngModel)]="user.nick">
@@ -82,8 +83,6 @@
                 <option value="Desconectado">Desconectado</option>
               </select>
             </div>
-            <hr>
-            <a class="btn btn-primary btn-block" (click)="saveSettings()">Guardar</a>
           </div>
         </div>
       </div>

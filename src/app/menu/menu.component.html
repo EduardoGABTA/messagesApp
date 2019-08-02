@@ -21,10 +21,11 @@
           <span class="user-name">{{usuario.nick}}
             <strong>{{usuario.subNick}}</strong>
           </span>
-            <span class="user-role">Usuario</span>
             <span class="user-status">
-            <i class="fa fa-circle"></i>
-            <span>Online</span>
+            <i class="fa fa-circle" [ngClass]="{'online' : usuario.status.toUpperCase() === 'CONECTADO',
+            'offLine': usuario.status.toUpperCase() === 'DESCONECTADO', 'ocupado': usuario.status.toUpperCase() === 'OCUPADO',
+            'ausente':  usuario.status.toUpperCase() === 'AUSENTE' }"></i>
+            <span>{{usuario.status}}</span>
           </span>
           </div>
         </div>
